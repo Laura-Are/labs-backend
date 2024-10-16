@@ -1,4 +1,4 @@
 package culturemedia.model;
 
-public record Video() {
+public record Video(String code, String title, String description, Double duration) {
 }
