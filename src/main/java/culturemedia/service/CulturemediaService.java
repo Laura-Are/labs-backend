@@ -9,6 +9,9 @@ import culturemedia.model.Video;
 
 public interface CulturemediaService {
     List<Video> listAll();
+
+    List<Video> findAll();
+
     Video save(Video save) throws DurationNotValidException;
     View save(View save) throws VideoNotFoundException;
 }
