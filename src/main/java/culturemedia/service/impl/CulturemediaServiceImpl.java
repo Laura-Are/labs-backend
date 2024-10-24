@@ -21,7 +21,7 @@ public class CulturemediaServiceImpl implements CulturemediaService {
     public List<Video> findAll() throws VideoNotFoundException {
         List<Video> videos = VideoRepository.findAll();
         if (videos.isEmpty()) {
-            throw new VideoNotFoundException("No videos found.");
+            throw new VideoNotFoundException("video I can't find");
         }
         return videos;
     }
@@ -36,6 +36,24 @@ public class CulturemediaServiceImpl implements CulturemediaService {
     public View save(View save){
         views.save(save);
         return save;
+    }
+
+    @Override
+    public List<Video> find(String title) throws VideoNotFoundException {
+        List<Video> videos = videoRepository.find( title );
+        if (videos.isEmpty()) {
+            throw new VideoNotFoundException("video I can't find");
+        }
+        return videos;
+    }
+
+    @Override
+    public List<Video> find(Double fromDuration, Double toDuration) throws VideoNotFoundException {
+        List<Video> videos = videoRepository.find( fromDuration, toDuration );
+        if (videos.isEmpty()) {
+            throw new VideoNotFoundException("video I can't find");
+        }
+        return videos;
     }
 }
 

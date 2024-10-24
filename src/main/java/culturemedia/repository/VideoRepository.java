@@ -4,7 +4,8 @@ import culturemedia.model.Video;
 import java.util.List;
 
 public interface VideoRepository {
-   static List<Video> findAll();
+   static List<Video> findAll() ;
+
    Video save(Video save);
    List<Video> find(String title);
    List<Video> find(Double fromDuration, Double toDuration);
