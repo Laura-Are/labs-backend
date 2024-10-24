@@ -2,6 +2,7 @@ package culturemedia.service.impl;
 
 import java.util.List;
 
+import culturemedia.exception.VideoNotFoundException;
 import culturemedia.model.View;
 import culturemedia.model.Video;
 import culturemedia.repository.VideoRepository;
@@ -9,22 +10,25 @@ import culturemedia.repository.ViewsRepository;
 import culturemedia.service.CulturemediaService;
 
 public class CulturemediaServiceImpl implements CulturemediaService {
-    private VideoRepository videos;
+    private VideoRepository videoRepository;
     private ViewsRepository views;
 
-    @Override
-    public List<Video> listAll() {
-        return List.of();
+    public CulturemediaServiceImpl(VideoRepository videoRepository, ViewsRepository viewsRepository) {
+        this.videoRepository = videoRepository;
+        this.views = viewsRepository;
     }
-
     @Override
-    public List<Video> findAll() {
-        return videos.findAll();
+    public List<Video> findAll() throws VideoNotFoundException {
+        List<Video> videos = VideoRepository.findAll();
+        if (videos.isEmpty()) {
+            throw new VideoNotFoundException("No videos found.");
+        }
+        return videos;
     }
 
     @Override
     public Video save(Video save){
-        videos.save(save);
+        videoRepository.save(save);
         return save;
     }
 
