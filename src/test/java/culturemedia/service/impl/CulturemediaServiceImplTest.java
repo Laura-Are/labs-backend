@@ -42,12 +42,12 @@ public class CulturemediaServiceImplTest {
         }
     }
     @Test
-    void when_FindAll_does_not_find_any_video_an_VideoNotFoundException_should_be_thrown_successfully() {
+    void when_no_videos_are_found_findAll_throws_VideoNotFoundException_successfully() {
         assertThrows(VideoNotFoundException.class, () -> culturemediaService.findAll());
     }
 
     @Test
-    void when_FindAll_all_videos_should_be_returned_successfully() throws VideoNotFoundException, DurationNotValidException {
+    void when_findAll_finds_videos_then_return_all_videos_successfully() throws VideoNotFoundException, DurationNotValidException {
         saveVideos();  // Simula la inserción de videos en el repositorio
 
         List<Video> allVideos = culturemediaService.findAll();  // Llama al método findAll
@@ -57,7 +57,7 @@ public class CulturemediaServiceImplTest {
     }
 
     @Test
-    void should_Return_Videos_By_Title_Containing_Specific_Word() throws VideoNotFoundException, DurationNotValidException {
+    void when_searching_by_title_should_return_videos_containing_specific_word() throws VideoNotFoundException, DurationNotValidException {
         saveVideos();
 
         List<Video> filteredVideos = culturemediaService.find("Click");
@@ -65,20 +65,20 @@ public class CulturemediaServiceImplTest {
     }
 
     @Test
-    void should_Throw_VideoNotFoundException_When_No_Video_Title_Matches() {
+    void when_no_video_title_matches_should_throw_VideoNotFoundException() {
         assertThrows(VideoNotFoundException.class, () -> culturemediaService.find("Click"));
     }
 
     @Test
-    void should_Return_Videos_Within_Specified_Duration_Range() throws VideoNotFoundException, DurationNotValidException {
+    void given_duration_range_should_return_videos_within_that_range() throws VideoNotFoundException, DurationNotValidException {
         saveVideos();
 
-        List<Video> videosInRange = culturemediaService.find(4.5, 5.5);
+        List<Video> videosInRange = culturemediaService.find(3.5, 4.5);
         assertEquals(3, videosInRange.size());
     }
 
     @Test
-    void should_Throw_VideoNotFoundException_When_No_Videos_Within_Duration_Range() {
-        assertThrows(VideoNotFoundException.class, () -> culturemediaService.find(4.5, 5.5));
+    void when_no_videos_are_within_duration_range_should_throw_VideoNotFoundException() {
+        assertThrows(VideoNotFoundException.class, () -> culturemediaService.find(3.5, 4.5));
     }
 }
