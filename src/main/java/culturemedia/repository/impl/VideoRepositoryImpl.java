@@ -14,11 +14,6 @@ public class VideoRepositoryImpl implements VideoRepository {
     }
 
     @Override
-    public List<Video> findAll() {
-        return videos;
-    }
-
-    @Override
     public Video save(Video video) {
         this.videos.add( video );
         return video;
