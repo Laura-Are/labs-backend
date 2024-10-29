@@ -60,13 +60,13 @@ public class CulturemediaServiceImplTest {
     void when_searching_by_title_should_return_videos_containing_specific_word() throws VideoNotFoundException, DurationNotValidException {
         saveVideos();
 
-        List<Video> filteredVideos = culturemediaService.find("Click");
+        List<Video> filteredVideos = culturemediaService.find("Clic");
         assertEquals(2, filteredVideos.size());
     }
 
     @Test
     void when_no_video_title_matches_should_throw_VideoNotFoundException() {
-        assertThrows(VideoNotFoundException.class, () -> culturemediaService.find("Click"));
+        assertThrows(VideoNotFoundException.class, () -> culturemediaService.find("Clic"));
     }
 
     @Test
