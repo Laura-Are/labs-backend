@@ -19,7 +19,7 @@ public class CulturemediaServiceImpl implements CulturemediaService {
     }
     @Override
     public List<Video> findAll() throws VideoNotFoundException {
-        List<Video> videos = VideoRepository.findAll();
+        List<Video> videos = videoRepository.findAll();
         if (videos.isEmpty()) {
             throw new VideoNotFoundException("video I can't find");
         }
