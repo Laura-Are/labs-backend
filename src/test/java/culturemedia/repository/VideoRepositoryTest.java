@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import culturemedia.model.Video;
 import culturemedia.repository.impl.VideoRepositoryImpl;
+import culturemedia.repository.VideoRepository;
+import org.mockito.Mock;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
