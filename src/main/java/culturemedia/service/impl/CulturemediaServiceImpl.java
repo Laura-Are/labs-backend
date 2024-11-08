@@ -8,14 +8,16 @@ import culturemedia.model.Video;
 import culturemedia.repository.VideoRepository;
 import culturemedia.repository.ViewsRepository;
 import culturemedia.service.CulturemediaService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CulturemediaServiceImpl implements CulturemediaService {
     private VideoRepository videoRepository;
-    private ViewsRepository views;
+    private ViewsRepository viewsRepository;
 
     public CulturemediaServiceImpl(VideoRepository videoRepository, ViewsRepository viewsRepository) {
         this.videoRepository = videoRepository;
-        this.views = viewsRepository;
+        this.viewsRepository = viewsRepository;
     }
     @Override
     public List<Video> findAll() throws VideoNotFoundException {
@@ -34,7 +36,7 @@ public class CulturemediaServiceImpl implements CulturemediaService {
 
     @Override
     public View save(View save){
-        views.save(save);
+        viewsRepository.save(save);
         return save;
     }
 
